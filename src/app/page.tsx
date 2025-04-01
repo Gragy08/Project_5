@@ -108,7 +108,7 @@ export default function Home() {
                 G-Dragon
               </div>
               <div className="font-[500] text-[14px] text-white">
-                "King of K-POP" với loạt hit bùng nổ, phong cách độc đáo và tầm ảnh hưởng mạnh mẽ, GD không chỉ là nghệ sĩ hàng đầu mà còn là biểu tượng của K-pop.
+                &quot;King of K-POP&quot; với loạt hit bùng nổ, phong cách độc đáo và tầm ảnh hưởng mạnh mẽ, GD không chỉ là nghệ sĩ hàng đầu mà còn là biểu tượng của K-pop.
               </div>
             </div>
             <div className="w-[215px] mr-[22px] mt-[48px]">
