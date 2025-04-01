@@ -1,7 +1,6 @@
 "use client";
 // tạo file này để sử dụng use client - người dùng, để lấy keyword từ url
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SongItem2 } from "@/app/components/song/SongItem2";
 import { dbFirebase } from "@/app/firebaseConfig";
 import { get, ref } from "firebase/database";

@@ -1,7 +1,6 @@
 "use client"
 
 import { useRouter, useSearchParams } from "next/navigation";
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
 export const Search = () => {

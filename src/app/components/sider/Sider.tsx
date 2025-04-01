@@ -2,7 +2,6 @@
 
 import { authFirebase } from "@/app/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
-/* eslint-disable @next/next/no-img-element */
 import Link from "next/link"
 import { useEffect, useState } from "react";
 import { FaHouse, FaMusic, FaPodcast, FaHeart, FaRightFromBracket, FaUser, FaUserPlus } from "react-icons/fa6";

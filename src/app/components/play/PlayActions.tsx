@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import { FaBackwardStep, FaPlay, FaForwardStep, FaPause } from "react-icons/fa6";

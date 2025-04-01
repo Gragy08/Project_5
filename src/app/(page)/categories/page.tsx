@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CardItem } from "@/app/components/card/CardItem";
 import { Title } from "@/app/components/title/Title";
 import { dbFirebase } from "@/app/firebaseConfig";

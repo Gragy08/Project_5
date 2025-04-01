@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @next/next/no-img-element */
 import { CardInfo } from "@/app/components/card/CardInfo";
 import { SongItem2 } from "@/app/components/song/SongItem2";
 import { Title } from "@/app/components/title/Title";

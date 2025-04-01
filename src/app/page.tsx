@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
 import { Title } from "./components/title/Title";
 import { SongItem } from "./components/song/SongItem";
@@ -102,7 +100,7 @@ export default function Home() {
       <div className="flex items-start">
         <div className="w-[534px]">
           <div 
-            className="w-full flex items-center rounded-[15px] bg-cover" 
+            className="w-full flex items-center rounded-[15px] bg-cover"
             style={{ backgroundImage: "url('/demo/background-1.png')" }}
           >
             <div className="flex-1 mr-[34px] ml-[30px]">

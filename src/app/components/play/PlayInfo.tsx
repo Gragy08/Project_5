@@ -3,7 +3,6 @@ export const PlayInfo = () => {
       <>
         <div className="flex items-center w-[218px]">
           <div className="w-[49px] aspect-square rounded-[14px] truncate">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="/" 
               alt="" 

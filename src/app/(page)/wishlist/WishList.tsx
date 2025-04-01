@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import { SongItem2 } from "@/app/components/song/SongItem2";
 
