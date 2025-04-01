@@ -1,4 +1,5 @@
 "use client"
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { authFirebase, dbFirebase } from "@/app/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";

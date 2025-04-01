@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import Link from "next/link"
 
 export const CardItem = (props: { item: any }) => {

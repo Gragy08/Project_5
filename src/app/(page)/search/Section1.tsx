@@ -1,4 +1,7 @@
 "use client";
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // tạo file này để sử dụng use client - người dùng, để lấy keyword từ url
 
 import { SongItem2 } from "@/app/components/song/SongItem2";

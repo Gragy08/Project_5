@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import Link from "next/link";
 import { ButtonPlay } from "../button/ButtonPlay";
 import { ButtonHeart } from "../button/ButtonHeart";

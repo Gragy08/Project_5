@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @next/next/no-img-element */
+
 import type { Metadata } from "next";
 import { Title } from "./components/title/Title";
 import { SongItem } from "./components/song/SongItem";
