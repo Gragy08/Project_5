@@ -65,12 +65,13 @@ export const Sider = () => {
   return (
     <>
       <div className="bg-[#212121] h-[100vh] fixed w-[280px]">
-        <div className="bg-[#1C1C1C] py-[25px] px-[20px]">
-          <Link href="/">
+        <div className="bg-[#1C1C1C] py-[10px] px-[15px]">
+          <Link href="/" className="flex justify-center items-center">
             <img 
-              src="/logo.svg" 
+              // src="/logo.svg" 
+              src="/demo/Logo.png"
               alt="Logo" 
-              className="h-[42px] w-auto"
+              className="h-[100px] w-auto"
             />
           </Link>
         </div>
