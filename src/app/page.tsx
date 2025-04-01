@@ -1,101 +1,157 @@
-import Image from "next/image";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @next/next/no-img-element */
+import type { Metadata } from "next";
+import { Title } from "./components/title/Title";
+import { SongItem } from "./components/song/SongItem";
+import { CardItem } from "./components/card/CardItem";
+import { onValue, ref } from "firebase/database";
+import { dbFirebase } from "./firebaseConfig";
+
+export const metadata: Metadata = {
+  title: "Trang chủ",
+  description: "Project nghe nhạc trực tuyến",
+};
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  // Section 1
+  
+  // Khởi tạo mảng rỗng
+  const dataSection1: any[] = [];
+  // Lấy dữ liệu từ firebase
+  const songRef = ref(dbFirebase, 'songs');
+  onValue(songRef, (items) => {
+    items.forEach((item) => {
+      const key = item.key;
+      const data = item.val();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      // Trả ra giao diện 3 phần tử thôi
+      if(dataSection1.length < 3) {
+        onValue(ref(dbFirebase, '/singers/' + data.singerId[0]), (itemSinger) => {
+
+          
+          const dataSinger = itemSinger.val();
+
+          // Đẩy dữ liệu vào mảng dataSection1
+          dataSection1.push(
+            {
+              id: key,
+              image: data.image,
+              title: data.title,
+              singer: dataSinger.title,
+              listen: data.listen,
+              link: `/song/${key}`,
+              audio: data.audio,
+              wishlist: data.wishlist
+            }
+          );
+        })
+      }
+    })
+  });
+  // End Section 1
+
+  // Section 2
+  const dataSection2: any[] = [];
+  const categoryRef = ref(dbFirebase, 'categories');
+  onValue(categoryRef, (items) => {
+    items.forEach((item) => {
+      const key = item.key;
+      const data = item.val();
+
+      if(dataSection2.length < 5) {
+        dataSection2.push(
+          {
+            id: key,
+            image: data.image,
+            title: data.title,
+            description: data.description,
+            link: `/categories/${key}`
+          }
+        );
+      }
+    })
+  });
+  // End Section 2
+
+  // Section 3
+  const dataSection3: any[] = [];
+  const singerRef = ref(dbFirebase, 'singers');
+  onValue(singerRef, (items) => {
+    items.forEach((item) => {
+      const key = item.key;
+      const data = item.val();
+
+      if(dataSection3.length < 5) {
+        dataSection3.push(
+          {
+            id: key,
+            image: data.image,
+            title: data.title,
+            description: data.description,
+            link: `/singers/${key}`
+          }
+        );
+      }
+    })
+  });
+  // End Section 3
+
+  return (
+    <>
+      {/* Section 1: Banner Home + Nghe Nhiều */}
+      <div className="flex items-start">
+        <div className="w-[534px]">
+          <div 
+            className="w-full flex items-center rounded-[15px] bg-cover" 
+            style={{ backgroundImage: "url('/demo/background-1.png')" }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <div className="flex-1 mr-[34px] ml-[30px]">
+              <div className="font-[700] text-[32px] text-white mb-[6px]">
+                G-Dragon
+              </div>
+              <div className="font-[500] text-[14px] text-white">
+                "King of K-POP" với loạt hit bùng nổ, phong cách độc đáo và tầm ảnh hưởng mạnh mẽ, GD không chỉ là nghệ sĩ hàng đầu mà còn là biểu tượng của K-pop.
+              </div>
+            </div>
+            <div className="w-[215px] mr-[22px] mt-[48px]">
+              <img 
+                // src="/demo/image-2.png" 
+                src="/demo/GD.png" 
+                alt="Nhạc EDM" 
+                className="w-full h-auto" 
+              />
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <div className="flex-1 ml-[20px]">
+          <Title text="Nghe Nhiều" />
+          <div className="grid grid-cols-1 gap-[12px]">
+            {dataSection1.map((item, index) => (
+              <SongItem key={index} item={item} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Section 2: Danh Mục Nổi Bật */}
+      <div className="mt-[30px]">
+        <Title text="Danh Mục Nổi Bật" />
+      </div>
+      <div className="grid grid-cols-5 gap-[20px]">
+        {dataSection2.map((item, index) => (
+          <CardItem key={index} item={item} />
+        ))}
+      </div>
+
+      {/* Section 3: Ca Sĩ Nổi Bật */}
+      <div className="mt-[30px]">
+        <Title text="Ca Sĩ Nổi Bật" />
+      </div>
+      <div className="grid grid-cols-5 gap-[20px]">
+        {dataSection3.map((item, index) => (
+          <CardItem key={index} item={item} />
+        ))}
+      </div>
+    </>
   );
 }
